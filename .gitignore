@@ -1,0 +1,43 @@
+# generic
+*.o
+*.a
+*.bin
+
+# Windows
+*.lib
+*.dll
+*.exe
+*.pdb
+
+# Unix
+*.so
+
+# macOS
+*.dylib
+*.dSYM
+.DS_Store
+
+# CMake
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+*-prefix/
+
+# build directory
+build/
+build-*/
+
+# Zig things
+.zig-*/
+zig-*/
+
+# Others
+.cache/

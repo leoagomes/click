@@ -1,0 +1,73 @@
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+BracedInitializerIndentWidth: 4
+ColumnLimit: 80
+ReflowComments: true
+
+PointerAlignment: Left
+DerivePointerAlignment: false
+
+BreakBeforeBraces: Attach
+BreakBeforeBinaryOperators: NonAssignment
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+
+AlignAfterOpenBracket: Align
+BinPackArguments: false
+BinPackParameters: OnePerLine
+BinPackLongBracedList: false
+PackConstructorInitializers: CurrentLine
+
+SortIncludes: true
+IncludeBlocks: Preserve
+
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: false
+AlignConsecutiveDeclarations:
+  Enabled: false
+
+SpaceBeforeParens: ControlStatements
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpaceBeforeAssignmentOperators: true
+
+IndentCaseLabels: false
+
+---
+Language: ObjC
+BasedOnStyle: LLVM
+
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+ContinuationIndentWidth: 4
+BracedInitializerIndentWidth: 4
+ColumnLimit: 80
+ReflowComments: true
+
+PointerAlignment: Left
+DerivePointerAlignment: false
+
+BreakBeforeBraces: Attach
+BreakBeforeBinaryOperators: NonAssignment
+AllowShortFunctionsOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AllowShortCaseLabelsOnASingleLine: false
+
+AlignAfterOpenBracket: Align
+BinPackParameters: false
+
+SortIncludes: true
+IncludeBlocks: Preserve
+
+ObjCBlockIndentWidth: 4
+IndentCaseLabels: false
