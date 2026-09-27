@@ -29,12 +29,15 @@ class Cursor {
     inline bool pressed(Button button) const {
         return _controller->pressed(button);
     }
+
     inline bool down(Button button) const {
         return _controller->down(button);
     }
+
     inline bool released(Button button) const {
         return _controller->released(button);
     }
+
     inline bool up(Button button) const {
         return _controller->up(button);
     }

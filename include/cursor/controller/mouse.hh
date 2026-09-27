@@ -18,12 +18,15 @@ class Mouse : public Controller {
     virtual bool pressed(Button button) const override {
         return IsMouseButtonPressed(button);
     }
+
     virtual bool down(Button button) const override {
         return IsMouseButtonDown(button);
     }
+
     virtual bool released(Button button) const override {
         return IsMouseButtonReleased(button);
     }
+
     virtual bool up(Button button) const override {
         return IsMouseButtonUp(button);
     }
