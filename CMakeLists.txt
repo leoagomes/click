@@ -10,6 +10,7 @@ add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME}
   PRIVATE
     src/main.cc
+    src/implementations.cc
 )
 target_include_directories(${PROJECT_NAME}
   PRIVATE
