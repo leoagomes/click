@@ -36,3 +36,9 @@ target_link_libraries(rlImGui PUBLIC
 add_subdirectory(spdlog spdlog_build)
 
 add_subdirectory(raylib-physfs)
+
+add_library(fredbuf STATIC
+  fredbuf/fredbuf.cpp)
+target_include_directories(fredbuf PUBLIC
+  "${CMAKE_CURRENT_SOURCE_DIR}/fredbuf")
+target_compile_features(fredbuf PUBLIC cxx_std_20)

@@ -26,6 +26,7 @@ target_link_libraries(${PROJECT_NAME}
     spdlog
     janet
     raylib_physfs
+    fredbuf
 )
 
 if (APPLE)
