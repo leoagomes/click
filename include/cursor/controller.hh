@@ -14,7 +14,7 @@ class Controller {
         return _position;
     }
 
-    virtual void update() = 0;
+    virtual void update(float delta) = 0;
 
     virtual bool pressed(Button button) const  = 0;
     virtual bool down(Button button) const     = 0;

@@ -10,7 +10,8 @@ class Mouse : public Controller {
     Mouse() = default;
     ~Mouse() = default;
 
-    virtual void update() override {
+    virtual void update(float delta) override {
+        (void)delta;
         _position = GetMousePosition();
     }
 

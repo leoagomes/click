@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
         spdlog::error("failed to initialize physfs: {}", PHYSFS_getLastError());
         return -1;
     }
-    if (!PHYSFS_mount("/", "data", true)) {
+    if (!PHYSFS_mount("data", nullptr, true)) {
         spdlog::error("failed to mount the data path: {}",
                       PHYSFS_getLastError());
         return -1;
@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(update_draw_frame, 0, 1);
 #else
-    SetTargetFPS(target_fps);
+    // SetTargetFPS(target_fps);
 
     while (!WindowShouldClose())
         update_draw_frame();
@@ -60,6 +60,6 @@ int main(int argc, char* argv[]) {
 }
 
 void update_draw_frame() {
-    game->update();
+    game->update(GetFrameTime());
     game->draw();
 }

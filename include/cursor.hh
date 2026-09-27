@@ -18,7 +18,7 @@ class Cursor {
 
     Cursor(std::shared_ptr<cursor::Controller> controller)
         : _controller(controller) {
-        _texture = LoadTextureFromPhysFS("UI/Cursors/White/Arrow.png");
+        _texture = LoadTextureFromPhysFS("/assets/UI/Cursors/White/Arrow.png");
     }
     ~Cursor() = default;
 
@@ -39,8 +39,8 @@ class Cursor {
         return _controller->up(button);
     }
 
-    void update() {
-        return _controller->update();
+    void update(float delta) {
+        return _controller->update(delta);
     }
 
     void draw() const {

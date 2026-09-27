@@ -24,12 +24,18 @@ class Game {
     }
     ~Game() {}
 
-    void update() {}
+    void update(float delta) {
+        if (!IsCursorHidden())
+            HideCursor();
+        for (auto& cursor : cursors) {
+            cursor.update(delta);
+        }
+    }
 
     void draw() {
         BeginDrawing();
-        ClearBackground(RAYWHITE);
-        DrawText("First window!", 190, 200, 20, LIGHTGRAY);
+        ClearBackground(DARKGRAY);
+        DrawText("First window!", 190, 200, 20, WHITE);
 
         for (const auto& cursor : cursors) {
             cursor.draw();
