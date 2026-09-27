@@ -41,3 +41,5 @@ zig-*/
 
 # Others
 .cache/
+
+imgui.ini
