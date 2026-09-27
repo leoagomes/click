@@ -1,10 +1,10 @@
 #include <memory>
 
 #include <janet.h>
+#include <physfs.h>
+#include <raylib.h>
 #include <rlImGui.h>
 #include <spdlog/spdlog.h>
-#include <raylib.h>
-#include <physfs.h>
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -16,15 +16,20 @@ std::unique_ptr<Game> game{nullptr};
 
 void update_draw_frame();
 
-static constexpr int window_width  = 1280;
-static constexpr int window_height = 720;
-static constexpr int target_fps = 60;
+static constexpr int window_width        = 1280;
+static constexpr int window_height       = 720;
+static constexpr int target_fps          = 60;
 static constexpr const char* window_name = "(click)";
 
 int main(int argc, char* argv[]) {
     janet_init();
     if (!PHYSFS_init(argv[0])) {
         spdlog::error("failed to initialize physfs: {}", PHYSFS_getLastError());
+        return -1;
+    }
+    if (!PHYSFS_mount("/", "data", true)) {
+        spdlog::error("failed to mount the data path: {}",
+                      PHYSFS_getLastError());
         return -1;
     }
     InitWindow(window_width, window_height, window_name);
@@ -56,4 +61,5 @@ int main(int argc, char* argv[]) {
 
 void update_draw_frame() {
     game->update();
+    game->draw();
 }
