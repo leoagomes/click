@@ -1,10 +1,11 @@
 set(BUILD_SHARED_LIBS OFF)
+add_subdirectory(janet janet_build)
 
 set(PHYSFS_INSTALL OFF)
 set(PHYSFS_PLATFORM_SDL OFF)
 set(PHYSFS_BUILD_STATIC ON)
 set(PHYSFS_BUILD_SHARED OFF)
-set(PHYSFS_BUILD_TESTS OFF)
+set(PHYSFS_BUILD_TEST OFF)
 set(PHYSFS_BUILD_DOCS OFF)
 add_subdirectory(physfs physfs_build)
 

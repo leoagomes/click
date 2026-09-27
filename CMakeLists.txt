@@ -24,6 +24,7 @@ target_link_libraries(${PROJECT_NAME}
     rlImGui
     imgui
     spdlog
+    janet
 )
 
 if (APPLE)

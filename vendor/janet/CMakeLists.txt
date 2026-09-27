@@ -1,0 +1,12 @@
+add_library(janet STATIC janet.c janet.h)
+target_include_directories(janet PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}")
+target_compile_features(janet PRIVATE c_std_99)
+
+if(WIN32)
+  target_link_libraries(janet PRIVATE ws2_32 mswsock advapi32)
+elseif(EMSCRIPTEN)
+  target_link_libraries(janet PRIVATE m)
+else()
+  find_package(Threads REQUIRED)
+  target_link_libraries(janet PRIVATE m ${CMAKE_DL_LIBS} Threads::Threads)
+endif()
