@@ -25,3 +25,6 @@
 [submodule "vendor/fredbuf"]
 	path = vendor/fredbuf
 	url = https://github.com/cdacamar/fredbuf.git
+[submodule "vendor/zep"]
+	path = vendor/zep
+	url = https://github.com/Rezonality/zep.git
