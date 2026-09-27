@@ -21,6 +21,8 @@ target_link_libraries(${PROJECT_NAME}
     libchibi-scheme
     raygui
     PhysFS::PhysFS-static
+    rlImGui
+    imgui
 )
 
 if (APPLE)
