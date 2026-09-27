@@ -19,7 +19,6 @@ static constexpr int target_fps = 60;
 static constexpr const char* window_name = "(click)";
 
 int main(int argc, char* argv[]) {
-    sexp_scheme_init();
     if (!PHYSFS_init(argv[0])) {
         spdlog::error("failed to initialize physfs: {}", PHYSFS_getLastError());
         return -1;

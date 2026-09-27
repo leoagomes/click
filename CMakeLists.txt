@@ -19,7 +19,6 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   PRIVATE
     raylib
-    libchibi-scheme
     raygui
     PhysFS::PhysFS-static
     rlImGui

@@ -1,5 +1,4 @@
 set(BUILD_SHARED_LIBS OFF)
-add_subdirectory(chibi-scheme chibi-scheme_build)
 
 set(PHYSFS_INSTALL OFF)
 set(PHYSFS_PLATFORM_SDL OFF)

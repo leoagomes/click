@@ -1,12 +1,8 @@
 #pragma once
 
 #include <raylib.h>
-#include <chibi/eval.h>
 
 class Game {
-  private:
-    sexp context;
-
   public:
     Game() {
     }

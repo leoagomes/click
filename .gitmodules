@@ -4,9 +4,6 @@
 [submodule "vendor/physfs"]
 	path = vendor/physfs
 	url = https://github.com/icculus/physfs.git
-[submodule "vendor/chibi-scheme"]
-	path = vendor/chibi-scheme
-	url = https://github.com/ashinn/chibi-scheme.git
 [submodule "vendor/raygui"]
 	path = vendor/raygui
 	url = https://github.com/raysan5/raygui.git
