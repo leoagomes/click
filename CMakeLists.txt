@@ -10,7 +10,7 @@ add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME}
   PRIVATE
     src/game.cc
-    src/implementations.cc
+    src/implementations.c
     src/main.cc
 )
 target_include_directories(${PROJECT_NAME}
@@ -25,6 +25,7 @@ target_link_libraries(${PROJECT_NAME}
     imgui
     spdlog
     janet
+    raylib_physfs
 )
 
 if (APPLE)

@@ -19,3 +19,6 @@
 [submodule "vendor/clay"]
 	path = vendor/clay
 	url = https://github.com/nicbarker/clay.git
+[submodule "vendor/raylib-physfs"]
+	path = vendor/raylib-physfs
+	url = https://github.com/RobLoach/raylib-physfs.git

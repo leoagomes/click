@@ -34,3 +34,5 @@ target_link_libraries(rlImGui PUBLIC
   raylib)
 
 add_subdirectory(spdlog spdlog_build)
+
+add_subdirectory(raylib-physfs)
