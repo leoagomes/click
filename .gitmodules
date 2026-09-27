@@ -16,3 +16,6 @@
 [submodule "vendor/rlImGui"]
 	path = vendor/rlImGui
 	url = https://github.com/raylib-extras/rlImGui.git
+[submodule "vendor/spdlog"]
+	path = vendor/spdlog
+	url = https://github.com/gabime/spdlog.git

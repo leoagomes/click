@@ -9,8 +9,9 @@ add_subdirectory(vendor)
 add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME}
   PRIVATE
-    src/main.cc
+    src/game.cc
     src/implementations.cc
+    src/main.cc
 )
 target_include_directories(${PROJECT_NAME}
   PRIVATE
@@ -23,6 +24,7 @@ target_link_libraries(${PROJECT_NAME}
     PhysFS::PhysFS-static
     rlImGui
     imgui
+    spdlog
 )
 
 if (APPLE)

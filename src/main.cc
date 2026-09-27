@@ -4,6 +4,10 @@
 #include <emscripten/emscripten.h>
 #endif
 
+#include "game.hh"
+
+Game game;
+
 void update_draw_frame();
 
 static constexpr int window_width  = 1280;
@@ -28,8 +32,5 @@ int main(int argc, char* argv[]) {
 }
 
 void update_draw_frame() {
-    BeginDrawing();
-    ClearBackground(RAYWHITE);
-    DrawText("First window!", 190, 200, 20, LIGHTGRAY);
-    EndDrawing();
+    game.update();
 }
