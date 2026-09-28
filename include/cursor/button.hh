@@ -3,7 +3,7 @@
 #include <raylib.h>
 #include <spdlog/spdlog.h>
 
-namespace cursor {
+namespace click::cursor {
 class Button {
   public:
     enum Value { left, middle, right };

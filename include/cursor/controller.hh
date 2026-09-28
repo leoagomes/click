@@ -4,7 +4,7 @@
 
 #include "cursor/button.hh"
 
-namespace cursor {
+namespace click::cursor {
 class Controller {
   public:
     Controller()          = default;

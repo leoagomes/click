@@ -4,7 +4,7 @@
 
 #include "cursor/controller.hh"
 
-namespace cursor::controller {
+namespace click::cursor::controller {
 class Mouse : public Controller {
   public:
     Mouse() = default;
