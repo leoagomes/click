@@ -42,3 +42,10 @@ add_library(fredbuf STATIC
 target_include_directories(fredbuf PUBLIC
   "${CMAKE_CURRENT_SOURCE_DIR}/fredbuf")
 target_compile_features(fredbuf PUBLIC cxx_std_20)
+
+set(BUILD_QT OFF)
+set(BUILD_IMGUI OFF)
+set(BUILD_DEMOS OFF)
+set(BUILD_TESTS OFF)
+set(ZEP_FEATURE_CPP_FILE_SYSTEM OFF)
+add_subdirectory(zep)

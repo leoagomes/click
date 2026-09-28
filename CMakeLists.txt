@@ -27,6 +27,7 @@ target_link_libraries(${PROJECT_NAME}
     janet
     raylib_physfs
     fredbuf
+    Zep::Zep
 )
 
 if (APPLE)
