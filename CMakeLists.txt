@@ -12,6 +12,9 @@ target_sources(${PROJECT_NAME}
     src/game.cc
     src/implementations.c
     src/main.cc
+    src/zep_example.cc
+    src/zep_raylib.cc
+    src/zep_raylib_editor.cc
 )
 target_include_directories(${PROJECT_NAME}
   PRIVATE

@@ -4,6 +4,7 @@
 #include <physfs.h>
 #include <raylib.h>
 #include <rlImGui.h>
+#include <raygui.h>
 #include <spdlog/spdlog.h>
 
 #if defined(PLATFORM_WEB)
@@ -21,6 +22,7 @@ static constexpr int window_height       = 720;
 static constexpr int target_fps          = 60;
 static constexpr const char* window_name = "(click)";
 
+
 int main(int argc, char* argv[]) {
     janet_init();
     if (!PHYSFS_init(argv[0])) {
@@ -33,7 +35,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
     InitWindow(window_width, window_height, window_name);
-    rlImGuiSetup(true);
+    SetExitKey(KEY_NULL); // Escape belongs to Zep's Vim mode.
 
     game = std::make_unique<Game>();
 
@@ -42,14 +44,13 @@ int main(int argc, char* argv[]) {
 #else
     // SetTargetFPS(target_fps);
 
-    while (!WindowShouldClose())
+    while (!WindowShouldClose() && !game->quit_requested())
         update_draw_frame();
 #endif
 
     // ensure we're releasing the Game instance before deinitializing everything
     game.reset();
 
-    rlImGuiShutdown();
     CloseWindow();
     if (!PHYSFS_deinit()) {
         spdlog::error("failed to deinit physfs: {}", PHYSFS_getLastError());
