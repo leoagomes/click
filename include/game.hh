@@ -10,11 +10,14 @@
 
 #include "cursor.hh"
 #include "cursor/controller/mouse.hh"
+#include "zep_example.hh"
 
+namespace click {
 class Game {
   private:
     JanetTable* env = nullptr;
     std::vector<Cursor> cursors{};
+    ZepExample zep_example;
 
   public:
     Game() {
@@ -25,25 +28,20 @@ class Game {
     ~Game() {}
 
     void update(float delta) {
-        if (!IsCursorHidden())
-            HideCursor();
-        for (auto& cursor : cursors) {
-            cursor.update(delta);
-        }
+        // Use the ordinary mouse for the editor assessment.
+        if (IsCursorHidden())
+            ShowCursor();
     }
 
     void draw() {
         BeginDrawing();
         ClearBackground(DARKGRAY);
-        DrawText("First window!", 190, 200, 20, WHITE);
 
-        for (const auto& cursor : cursors) {
-            cursor.draw();
-        }
-
-        rlImGuiBegin();
-        // ImGui::ShowDemoWindow();
-        rlImGuiEnd();
+        zep_example.draw();
         EndDrawing();
     }
+    bool quit_requested() const {
+        return zep_example.quit_requested();
+    }
 };
+} // namespace click

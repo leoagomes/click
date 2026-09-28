@@ -8,6 +8,7 @@
 #include "cursor/button.hh"
 #include "cursor/controller.hh"
 
+namespace click {
 class Cursor {
   private:
     Texture2D _texture;
@@ -50,3 +51,4 @@ class Cursor {
         DrawTextureV(_texture, position(), WHITE);
     }
 };
+} // namespace click
