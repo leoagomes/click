@@ -3,10 +3,19 @@
 #include <raylib.h>
 #include <zep/display.h>
 
-namespace Zep {
-class RaylibFont : public ZepFont {
+namespace Zep::Raylib {
+inline ::Color rl_color(const NVec4f& color) {
+    return ::Color{
+        static_cast<unsigned char>(color.x * 255.0f),
+        static_cast<unsigned char>(color.y * 255.0f),
+        static_cast<unsigned char>(color.z * 255.0f),
+        static_cast<unsigned char>(color.w * 255.0f),
+    };
+}
+
+class Font : public ZepFont {
   public:
-    RaylibFont(ZepDisplay& display) : ZepFont(display) {}
+    Font(ZepDisplay& display) : ZepFont(display) {}
 
     virtual void SetPixelHeight(int height) override {}
 
@@ -14,16 +23,18 @@ class RaylibFont : public ZepFont {
                                const uint8_t* pEnd) const override {}
 };
 
-class RaylibDisplay : public ZepDisplay {
+class Display : public ZepDisplay {
   public:
-    RaylibDisplay() {}
+    Display() {}
 
     virtual void DrawLine(const NVec2f& start,
                           const NVec2f& end,
                           const NVec4f& color = NVec4f(1.0f),
                           float width         = 1.0f) const override {
-        DrawLineEx(
-            Vector2{start.x, start.y}, Vector2{end.x, end.y}, width, Color{});
+        DrawLineEx(Vector2{start.x, start.y},
+                   Vector2{end.x, end.y},
+                   width,
+                   rl_color(color));
     }
 
     virtual void DrawChars(ZepFont& font,
@@ -33,11 +44,17 @@ class RaylibDisplay : public ZepDisplay {
                            const uint8_t* text_end = nullptr) const override {}
 
     virtual void
-    DrawRectFilled(const NRectf& a,
-                   const NVec4f& col = NVec4f(1.0f)) const override {}
+    DrawRectFilled(const NRectf& rect,
+                   const NVec4f& color = NVec4f(1.0f)) const override {
+        DrawRectangle(rect.Left(),
+                      rect.Top(),
+                      rect.Width(),
+                      rect.Height(),
+                      rl_color(color));
+    }
 
     virtual void SetClipRect(const NRectf& rc) override {}
 
     virtual ZepFont& GetFont(ZepTextType type) override {}
 };
-} // namespace Zep
+} // namespace Zep::Raylib
