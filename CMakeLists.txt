@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 4.3)
 project(click VERSION 0.1 LANGUAGES C CXX)
 
+if (APPLE)
+  enable_language(OBJC)
+endif()
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -34,8 +38,10 @@ target_link_libraries(${PROJECT_NAME}
 )
 
 if (APPLE)
-  enable_language(OBJC)
-    target_link_libraries(${PROJECT_NAME} "-framework IOKit")
-    target_link_libraries(${PROJECT_NAME} "-framework Cocoa")
-    target_link_libraries(${PROJECT_NAME} "-framework OpenGL")
+  target_link_libraries(${PROJECT_NAME}
+    PRIVATE
+      "-framework IOKit"
+      "-framework Cocoa"
+      "-framework OpenGL"
+  )
 endif()

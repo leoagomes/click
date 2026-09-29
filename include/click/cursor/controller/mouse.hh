@@ -2,7 +2,7 @@
 
 #include <raylib.h>
 
-#include "cursor/controller.hh"
+#include "click/cursor/controller.hh"
 
 namespace click::cursor::controller {
 class Mouse : public Controller {
