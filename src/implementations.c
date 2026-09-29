@@ -1,3 +1,6 @@
+// ensure raylib is present for implementations that need it
+#include <raylib.h>
+
 #define RAYGUI_IMPLEMENTATION
 #include <raygui.h>
 

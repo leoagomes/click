@@ -2,18 +2,18 @@
 
 #include <janet.h>
 #include <physfs.h>
+#include <raygui.h>
 #include <raylib.h>
 #include <rlImGui.h>
-#include <raygui.h>
 #include <spdlog/spdlog.h>
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
 #endif
 
-#include "game.hh"
+#include "click/game.hh"
 
-std::unique_ptr<Game> game{nullptr};
+std::unique_ptr<click::Game> game{nullptr};
 
 void update_draw_frame();
 
@@ -21,7 +21,6 @@ static constexpr int window_width        = 1280;
 static constexpr int window_height       = 720;
 static constexpr int target_fps          = 60;
 static constexpr const char* window_name = "(click)";
-
 
 int main(int argc, char* argv[]) {
     janet_init();
@@ -37,7 +36,7 @@ int main(int argc, char* argv[]) {
     InitWindow(window_width, window_height, window_name);
     SetExitKey(KEY_NULL); // Escape belongs to Zep's Vim mode.
 
-    game = std::make_unique<Game>();
+    game = std::make_unique<click::Game>();
 
 #if defined(PLATFORM_WEB)
     emscripten_set_main_loop(update_draw_frame, 0, 1);

@@ -2,7 +2,11 @@
 
 #include <memory>
 
-#include <raylib.hh>
+// clang-format off
+#include <raylib.h>
+#include <raylib-physfs.h>
+// clang-format on
+
 #include <raymath.h>
 
 #include "cursor/button.hh"
