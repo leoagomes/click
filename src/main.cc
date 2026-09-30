@@ -3,9 +3,11 @@
 #include <janet.h>
 #include <physfs.h>
 #include <raygui.h>
+#include <raylib-physfs.h>
 #include <raylib.h>
 #include <rlImGui.h>
 #include <spdlog/spdlog.h>
+#include <utf8.h>
 
 #if defined(PLATFORM_WEB)
 #include <emscripten/emscripten.h>
@@ -30,6 +32,19 @@ int main(int argc, char* argv[]) {
     }
     if (!PHYSFS_mount("data", nullptr, true)) {
         spdlog::error("failed to mount the data path: {}",
+                      PHYSFS_getLastError());
+        return -1;
+    }
+    // Per-user writable location (e.g. %APPDATA%/leoagomes/click on Windows).
+    // Also mounted so files written there can be read back through PhysFS.
+    const char* pref_dir = GetPrefDirectory("leoagomes", "click");
+    if (!pref_dir || !SetPhysFSWriteDirectory(pref_dir)) {
+        spdlog::error("failed to set the physfs write directory: {}",
+                      PHYSFS_getLastError());
+        return -1;
+    }
+    if (!PHYSFS_mount(pref_dir, nullptr, true)) {
+        spdlog::error("failed to mount the pref directory {}: {}", pref_dir,
                       PHYSFS_getLastError());
         return -1;
     }

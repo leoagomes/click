@@ -1,12 +1,15 @@
+#include <raylib.h>
+
+#include "zep/physfs.hh"
+#include "zep/raylib.hh"
 #include "zep_example.hh"
-#include "zep_raylib_editor.hh"
 
 namespace {
 constexpr int editor_font_size = 24;
 
 struct EditorFont {
-    Font value = LoadFontEx("data/assets/JetBrainsMono-Regular.ttf", editor_font_size,
-                            nullptr, 0);
+    Font value = LoadFontEx(
+        "data/assets/JetBrainsMono-Regular.ttf", editor_font_size, nullptr, 0);
 
     EditorFont() {
         SetTextureFilter(value.texture, TEXTURE_FILTER_POINT);
@@ -16,11 +19,12 @@ struct EditorFont {
         if (value.texture.id != GetFontDefault().texture.id)
             UnloadFont(value);
     }
-    EditorFont(const EditorFont&) = delete;
+    EditorFont(const EditorFont&)            = delete;
     EditorFont& operator=(const EditorFont&) = delete;
 };
 
-constexpr const char* sample = R"janet(# Janet / Zep / raylib -- no ImGui renderer or input handling.
+constexpr const char* sample =
+    R"janet(# Janet / Zep / raylib -- no ImGui renderer or input handling.
 # Vim: i inserts, Escape returns to normal mode, hjkl move, u undoes.
 # Ctrl+r redoes. Select with v; click to position; y yanks, p pastes.
 # System clipboard: "+y and "+p. :q quits. Text is not evaluated.
@@ -31,12 +35,14 @@ constexpr const char* sample = R"janet(# Janet / Zep / raylib -- no ImGui render
 (each name ["Janet" "Zep" "raylib"]
   (print (greet name)))
 )janet";
-}
+} // namespace
 
 struct ZepExample::Impl {
-    // Members are destroyed in reverse order: Zep releases its borrowed font first.
+    // Members are destroyed in reverse order: Zep releases its borrowed font
+    // first.
     EditorFont font;
-    click::ZepEditorRaylib editor{font.value, editor_font_size};
+    std::shared_ptr<Zep::IZepFileSystem> fs{new Zep::PhysFS::FileSystem()};
+    Zep::Raylib::Editor editor{font.value, editor_font_size, fs.get()};
     Impl() {
         editor.InitWithText("assessment.janet", sample);
         editor.GetConfig().autoHideCommandRegion = false;
@@ -47,10 +53,15 @@ ZepExample::~ZepExample() = default;
 std::string ZepExample::text() const {
     return impl_->editor.GetActiveBuffer()->GetWorkingBuffer().string();
 }
-bool ZepExample::quit_requested() const { return impl_->editor.quit_requested(); }
+bool ZepExample::quit_requested() const {
+    return impl_->editor.quit_requested();
+}
 void ZepExample::draw() {
     auto& editor = impl_->editor;
-    const Rectangle bounds{0, 0, static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight())};
+    const Rectangle bounds{0,
+                           0,
+                           static_cast<float>(GetScreenWidth()),
+                           static_cast<float>(GetScreenHeight())};
     editor.SetDisplayRegion({0, 0}, {bounds.width, bounds.height});
     // Zep computes the mouse-to-glyph mapping while drawing. Supply this
     // frame's pointer position before Display, then dispatch click events.

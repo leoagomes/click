@@ -16,9 +16,7 @@ target_sources(${PROJECT_NAME}
     src/game.cc
     src/implementations.c
     src/main.cc
-    # src/zep_example.cc
-    # src/zep_raylib.cc
-    # src/zep_raylib_editor.cc
+    src/zep_example.cc
 )
 target_include_directories(${PROJECT_NAME}
   PRIVATE
@@ -35,7 +33,7 @@ target_link_libraries(${PROJECT_NAME}
     raylib_physfs
     fredbuf
     Zep::Zep
-    utfcpp
+    utf8cpp::utf8cpp
 )
 
 if (APPLE)
