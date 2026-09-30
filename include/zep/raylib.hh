@@ -19,8 +19,7 @@ namespace Zep::Raylib {
 // value 0..255 in isolation when it builds its glyph cache, and buffers may
 // contain arbitrary bytes, so an undecodable byte is consumed as U+FFFD
 // rather than throwing.
-template <typename It>
-inline char32_t next_codepoint(It& it, It end) {
+template <typename It> inline char32_t next_codepoint(It& it, It end) {
     try {
         return utf8::next(it, end);
     } catch (const utf8::exception&) {
@@ -61,8 +60,12 @@ class Font : public ZepFont {
             text_end = text_begin
                        + std::strlen(reinterpret_cast<const char*>(text_begin));
 
-        float x = 0, width = 0, height = 0;
-        const auto pixel_height = GetPixelHeight();
+        // Matches ImGui's CalcTextSize convention, which Zep assumes: a
+        // single line of text is one pixel_height tall, and each newline
+        // adds another line.
+        float x = 0, width = 0;
+        int lines               = 1;
+        const auto pixel_height = static_cast<float>(GetPixelHeight());
 
         std::string_view view{reinterpret_cast<const char*>(text_begin),
                               reinterpret_cast<const char*>(text_end)};
@@ -71,13 +74,15 @@ class Font : public ZepFont {
             auto codepoint = next_codepoint(it, view.end());
             if (codepoint == '\n') {
                 width = std::max(width, x);
-                height += pixel_height;
+                x     = 0;
+                ++lines;
             } else {
                 x += advance(codepoint);
             }
         }
 
-        return NVec2f{std::max(width, x), height};
+        return NVec2f{std::max(width, x),
+                      static_cast<float>(lines) * pixel_height};
     }
 
     const ::Font& font() const {
