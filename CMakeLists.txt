@@ -35,6 +35,7 @@ target_link_libraries(${PROJECT_NAME}
     raylib_physfs
     fredbuf
     Zep::Zep
+    utfcpp
 )
 
 if (APPLE)

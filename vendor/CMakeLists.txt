@@ -58,3 +58,5 @@ unset(CMAKE_POLICY_VERSION_MINIMUM)
 # Zep::Zep in-tree get no include path. Add it ourselves.
 target_include_directories(Zep PUBLIC
   "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/zep/include>")
+
+add_subdirectory(utfcpp)
