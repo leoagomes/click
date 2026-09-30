@@ -28,3 +28,6 @@
 [submodule "vendor/zep"]
 	path = vendor/zep
 	url = https://github.com/Rezonality/zep.git
+[submodule "vendor/utfcpp"]
+	path = vendor/utfcpp
+	url = https://github.com/nemtrif/utfcpp.git
