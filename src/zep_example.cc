@@ -41,8 +41,9 @@ struct ZepExample::Impl {
     // Members are destroyed in reverse order: Zep releases its borrowed font
     // first.
     EditorFont font;
-    std::shared_ptr<Zep::IZepFileSystem> fs{new Zep::PhysFS::FileSystem()};
-    Zep::Raylib::Editor editor{font.value, editor_font_size, fs.get()};
+    Zep::Raylib::Editor editor{font.value,
+                               editor_font_size,
+                               std::make_unique<Zep::PhysFS::FileSystem>()};
     Impl() {
         editor.InitWithText("assessment.janet", sample);
         editor.GetConfig().autoHideCommandRegion = false;

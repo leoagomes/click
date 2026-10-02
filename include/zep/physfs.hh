@@ -18,8 +18,9 @@ namespace Zep::PhysFS {
 // working directory. Reads come from any mounted archive or directory; writes
 // require a write directory to have been set with PHYSFS_setWriteDir.
 //
-// PhysFS must be initialised before this object is used, and the object must
-// outlive the ZepEditor that borrows it.
+// PhysFS must be initialised before this object is used. A ZepEditor takes
+// ownership of the file system passed to it and deletes it on destruction, so
+// PhysFS must remain initialised until the editor is destroyed.
 class FileSystem : public IZepFileSystem {
   public:
     explicit FileSystem(fs::path config_path = "/")

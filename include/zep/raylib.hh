@@ -198,13 +198,17 @@ class Display : public ZepDisplay {
 
 class Editor final : public Zep::ZepEditor, public Zep::IZepComponent {
   public:
-    explicit Editor(::Font font, int pixel_height, IZepFileSystem* fs)
+    // ZepEditor takes ownership of the file system and deletes it in its
+    // destructor.
+    explicit Editor(::Font font,
+                    int pixel_height,
+                    std::unique_ptr<IZepFileSystem> fs)
         : _focused(false),
           _quit_requested(false),
           Zep::ZepEditor(new Zep::Raylib::Display(font, pixel_height),
                          Zep::fs::path{},
                          Zep::ZepEditorFlags::DisableThreads,
-                         fs) {
+                         fs.release()) {
         RegisterCallback(this);
     }
     ~Editor() {
