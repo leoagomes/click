@@ -8,21 +8,24 @@
 #include <raylib.h>
 #include <rlImGui.h>
 
-#include "cursor.hh"
-#include "cursor/controller/mouse.hh"
+#include "click/cursor.hh"
+#include "click/cursor/controller/mouse.hh"
+#include "click/editor/window.hh"
+
 #include "zep_example.hh"
 
 namespace click {
 class Game {
   private:
-    JanetTable* env = nullptr;
-    std::vector<Cursor> cursors{};
-    ZepExample zep_example;
+    JanetTable* _environment = nullptr;
+    std::vector<Cursor> _cursors{};
+    ZepExample _zep_example;
+    editor::Window _window;
 
   public:
     Game() {
-        env = janet_core_env(nullptr);
-        cursors.push_back(
+        _environment = janet_core_env(nullptr);
+        _cursors.push_back(
             Cursor(std::make_shared<cursor::controller::Mouse>()));
     }
     ~Game() {}
@@ -37,7 +40,7 @@ class Game {
         BeginDrawing();
         ClearBackground(DARKGRAY);
 
-        zep_example.draw();
+        _zep_example.draw();
         EndDrawing();
     }
     bool quit_requested() const {
